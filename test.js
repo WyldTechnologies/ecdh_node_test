@@ -1,3 +1,4 @@
+//https://stackoverflow.com/questions/33096654/aes-256-produces-different-ciphertexts-in-ios-and-node-js-with-same-password
 var crypto = require('crypto');
 var password = "1234567890123456";
 var salt = "gettingsaltyfoo!";
