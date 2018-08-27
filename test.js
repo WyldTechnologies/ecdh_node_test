@@ -28,16 +28,22 @@ var ALGORITHM = 'aes-256-cbc';
 
  // we use our shared secret as our password, then hash it
  //we generate this on the client side in the same way
-let password_hash = crypto.createHash('SHA256').update(shared_secret, 'base64').digest('hex').substring(0,32);//.toUpperCase();
+let hexKey = crypto.createHash('SHA256').update(shared_secret, 'base64').digest('hex').substring(0,32);
 //let password_hash = "1234567890abcdefghijklmnopqrstuv";
-console.log('key=', password_hash); // 098F6BCD4621D373CADE4E832627B4F6
+console.log('key=', hexKey); // 098F6BCD4621D373CADE4E832627B4F6
 
-var iv = new Buffer(16);
+
+let iv = new Buffer(16);
 iv.fill(0);
 
+let hexIV = Buffer.from("c60c9f3fcd4c7e6d25215ffa62dcc892", "hex");
+console.log('iv=', hexIV.toString('hex'));
+
+console.log("cipher:", encrypt("Hello World",hexKey,hexIV));
+console.log("");
+console.log("plainText:", decrypt("ANFxCLNHBFxlZI1XzpWtGw==",hexKey,hexIV));
 
 
-console.log(encrypt("Hello World",password_hash,iv));
 
 function encrypt(_text, _key, _iv){
   var cipher = crypto.createCipheriv(ALGORITHM, _key, _iv);

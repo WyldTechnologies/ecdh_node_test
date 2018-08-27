@@ -1,3 +1,3 @@
 Version History
-(Update Version and Build Date in package.json  too)
 ------------------------------------------------------------
+1.0.0  Example complete- compatible with ecdh_ios_test
