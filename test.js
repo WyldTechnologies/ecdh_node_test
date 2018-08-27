@@ -22,7 +22,7 @@ var ALGORITHM = 'aes-256-cbc';
  //console.log("Beck Pub: " + beck.getPublicKey('base64'))
  console.log("Beck CompPub: " + beck.getPublicKey('base64','compressed'))
 
- const alex_pub = Buffer.from('Ao8Tueo0xhvruXy+olp+j3eL7zNfaVkfoHAkhpRVA92UUCjF7gWSqLOXPqv909e8fg==', 'base64');
+ const alex_pub = Buffer.from('AvLynsdtAt4QTZXNSwkN1W70d6qJ9PQNge7sgJhE/hMGNWvyUkrkzy3NiOd486104w==', 'base64');//Ao8Tueo0xhvruXy+olp+j3eL7zNfaVkfoHAkhpRVA92UUCjF7gWSqLOXPqv909e8fg==', 'base64');
  const shared_secret = beck.computeSecret(alex_pub, 'base64', 'base64')
  console.log("Beck secret: " + shared_secret);
 
@@ -33,8 +33,8 @@ let hexKey = crypto.createHash('SHA256').update(shared_secret, 'base64').digest(
 console.log('key=', hexKey); // 098F6BCD4621D373CADE4E832627B4F6
 
 
-let iv = new Buffer(16);
-iv.fill(0);
+// let iv = new Buffer(16);
+// iv.fill(0);
 
 let hexIV = Buffer.from("c60c9f3fcd4c7e6d25215ffa62dcc892", "hex");
 console.log('iv=', hexIV.toString('hex'));
