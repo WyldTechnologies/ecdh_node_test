@@ -28,3 +28,5 @@ let hexKey = crypto.createHash('SHA256').update(shared_secret, 'base64').digest(
 ```
 It is important that we only use substring here to truncate the 64 character
 hash to 32 characters.
+
+https://nodejs.org/api/
