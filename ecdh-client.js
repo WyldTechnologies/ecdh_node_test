@@ -2,6 +2,7 @@
 https://developer.android.com/guide/topics/security/cryptography
 var crypto = require('crypto');
 var stdin = process.openStdin();
+var util = require('util');
 
 const CURVE = 'secp384r1';
 var ALGORITHM = 'aes-256-cbc';
@@ -41,18 +42,22 @@ stdin.addListener("data", function(d) {
 
        //KeyExchange
         const bob_secret = bob.computeSecret(alice_pub, 'base64', 'base64')
-        console.log("Shared Secret: " + bob_secret);
-        const bob_secret_hex = bob.computeSecret(alice_pub, 'base64', 'hex')
-        console.log("Shared Secret HEX: " + bob_secret_hex.substring(0,32));
+        console.log("Shared Secret Long: " + bob_secret);
+        //console.log("Shared Secret Short: " + bob_secret.slice(0, 32));
 
+        const bob_secret_hex = crypto.createHash('SHA256').update(bob_secret, 'base64').digest('hex').slice(0, 32);
+        console.log("Shared Secret HEX: " + bob_secret_hex);
 
+        const bob_secret_hex2 = crypto.createHash('SHA256').update(bob_secret).digest('hex').slice(0, 32);
+        console.log("Shared Secret HEX2: " + bob_secret_hex2);
 
-       //CHAINING THE KEY
-       // we use our shared secret as our password, then hash it
-       //we generate this on the client side in the same way
-       //let hexKey = crypto.createHash('SHA256').update(beck_secret, 'base64').digest('hex').substring(0,32);
-       //let password_hash = "1234567890abcdefghijklmnopqrstuv";
-       //console.log('hexKey=', hexKey); // 098F6BCD4621D373CADE4E832627B4F6
+        //const bob_digest = crypto.createHash('SHA256').update(bob_secret, 'base64').digest('base64');
+        //console.log("DIGEST: " + util.inspect(bob_digest));
+        //const bob_hex = bob_digest.digest('hex');
+        //console.log("Shared Secret HEX2: " + bob_hex);
+        //const bob_ss = bob_hex.slice(0, 32);
+        //console.log("DIGEST: " + util.inspect(bob_digest) + " HEX: " + bob_hex + " SS: " + bob_ss);
+
 
 
        // let iv = new Buffer(16);

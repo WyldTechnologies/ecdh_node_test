@@ -5,7 +5,7 @@
   "main": "test.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ecdh.js"
+    "start": "node ecdh-client.js"
   },
   "repository": {
     "type": "git",
